@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: medcare-backend
+    env: java
+    buildCommand: "./mvnw clean package -DskipTests"
+    startCommand: "java -jar target/medcare-0.0.1-SNAPSHOT.jar"
+    envVars:
+      - key: PORT
+        value: 8080

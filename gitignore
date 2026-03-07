@@ -1,0 +1,63 @@
+# ===========================
+# COMPILED OUTPUT
+# ===========================
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ===========================
+# H2 DATABASE FILES
+# ===========================
+*.mv.db
+*.trace.db
+
+# ===========================
+# MAVEN
+# ===========================
+.mvn/timing.properties
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# ===========================
+# IDE - IntelliJ IDEA
+# ===========================
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ===========================
+# IDE - Eclipse
+# ===========================
+.classpath
+.project
+.settings/
+.springBeans
+
+# ===========================
+# IDE - VS Code
+# ===========================
+.vscode/
+
+# ===========================
+# OS FILES
+# ===========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================
+# LOGS
+# ===========================
+*.log
+logs/
+spring.log
+
+# ===========================
+# ENV / SECRETS
+# ===========================
+.env
+.env.local
+application-secret.properties
