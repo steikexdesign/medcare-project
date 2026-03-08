@@ -17,23 +17,26 @@
 </select><br>
 
 <label>Date:</label>
-<input type="date" name="date"><br>
+<input type="date" name="date" required><br>
 
 <label>Name:</label>
-<input type="text" name="name"><br>
+<input type="text" name="name" required><br>
 
 <label>Phone:</label>
-<input type="tel" name="phone"><br>
+<input type="tel" name="phone" required><br>
 
 <button type="submit">Book Appointment</button>
 
 </form>
+<p id="statusMsg"></p>
 
 <script>
 document.getElementById("appointmentForm").addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const form = event.target;
+  const status = document.getElementById("statusMsg");
+  status.textContent = "Saving...";
   const payload = {
     doctor: form.doctor.value,
     date: form.date.value,
@@ -43,7 +46,7 @@ document.getElementById("appointmentForm").addEventListener("submit", async func
   };
 
   try {
-    const response = await fetch("http://localhost:8080/api/appointments", {
+    const response = await fetch("/api/appointments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -52,11 +55,14 @@ document.getElementById("appointmentForm").addEventListener("submit", async func
     if (!response.ok) {
       throw new Error("Request failed with status " + response.status);
     }
+    const saved = await response.json();
 
-    alert("Appointment saved to MySQL (medcare_db) successfully!");
+    status.textContent = "Saved successfully. Appointment ID: " + saved.id;
+    alert("Appointment saved successfully! ID: " + saved.id);
     form.reset();
   } catch (error) {
-    alert("Could not save appointment. Make sure Spring Boot is running on http://localhost:8080.");
+    status.textContent = "Save failed: " + error.message;
+    alert("Could not save appointment. Open browser console for details.");
     console.error(error);
   }
 });
