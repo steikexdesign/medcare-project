@@ -1,0 +1,4 @@
+com\medcare\model\Appointment.class
+com\medcare\MedcareApplication.class
+com\medcare\repository\AppointmentRepository.class
+com\medcare\controller\AppointmentController.class
