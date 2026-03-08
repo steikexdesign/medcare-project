@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MedCare - Book Appointment</title>
+</head>
+
+<body>
+
+<h1>Quick Appointment</h1>
+
+<form id="appointmentForm">
+
+<label>Doctor:</label>
+<select name="doctor">
+<option value="Cardiology">Cardiology</option>
+</select><br>
+
+<label>Date:</label>
+<input type="date" name="date"><br>
+
+<label>Name:</label>
+<input type="text" name="name"><br>
+
+<label>Phone:</label>
+<input type="tel" name="phone"><br>
+
+<button type="submit">Book Appointment</button>
+
+</form>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const payload = {
+    doctor: form.doctor.value,
+    date: form.date.value,
+    name: form.name.value,
+    phone: form.phone.value,
+    email: ""
+  };
+
+  try {
+    const response = await fetch("http://localhost:8080/api/appointments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error("Request failed with status " + response.status);
+    }
+
+    alert("Appointment saved to MySQL (medcare_db) successfully!");
+    form.reset();
+  } catch (error) {
+    alert("Could not save appointment. Make sure Spring Boot is running on http://localhost:8080.");
+    console.error(error);
+  }
+});
+</script>
+
+</body>
+</html>

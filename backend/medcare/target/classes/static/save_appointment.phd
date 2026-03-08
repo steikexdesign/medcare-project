@@ -1,0 +1,21 @@
+<?php
+
+include "db.php";
+
+$doctor = $_POST['doctor'];
+$date = $_POST['date'];
+$name = $_POST['name'];
+$phone = $_POST['phone'];
+
+$sql = "INSERT INTO appointments (doctor,date,name,phone)
+VALUES ('$doctor','$date','$name','$phone')";
+
+if($conn->query($sql) === TRUE){
+echo "Appointment Booked Successfully";
+}else{
+echo "Error: ".$conn->error;
+}
+
+$conn->close();
+
+?>

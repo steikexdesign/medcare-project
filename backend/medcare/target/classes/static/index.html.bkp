@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedCare - Book Appointment</title>
+</head>
+<body>
+    <h1>Quick Appointment</h1>
+    <form id="appointmentForm">
+        <label for="doctor">Doctor:</label>
+        <select id="doctor">
+            <option value="Cardiology">Cardiology</option>
+        </select><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date"><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name"><br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone"><br>
+        <button type="submit">Book Appointment</button>
+    </form>
+    <div id="message"></div>
+    <script>
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const doctor = document.getElementById('doctor').value;
+            const date = document.getElementById('date').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const appointment = { doctor, date, name, phone };
+            let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            appointments.push(appointment);
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+            document.getElementById('message').textContent = 'Appointment saved successfully!';
+        });
+    </script>
+</body>
+</html>
