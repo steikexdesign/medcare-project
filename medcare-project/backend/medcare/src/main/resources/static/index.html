@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MedCare Multi-Speciality Clinic - Expert Healthcare in India. Book appointments online, AI symptom checker, and more.">
+<meta name="keywords" content="MedCare, hospital, clinic, doctor, appointment, India, multispecialty">
+<title>MedCare | Multi-Speciality Clinic & Hospital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+<style>
+  :root {
+    --dark-blue: #23408e;
+    --mid-blue: #385399;
+    --teal: #1aab8b;
+    --teal-light: #e6f7f3;
+    --teal-dark: #138a6e;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    --red: #ef4444;
+    --orange: #f97316;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow: 0 4px 16px rgba(35,64,142,0.10);
+    --shadow-lg: 0 8px 32px rgba(35,64,142,0.16);
+    --shadow-xl: 0 20px 60px rgba(35,64,142,0.18);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .dark {
+    --white: #0f172a;
+    --gray-50: #1e293b;
+    --gray-100: #1e293b;
+    --gray-200: #334155;
+    --gray-300: #475569;
+    --gray-600: #94a3b8;
+    --gray-700: #cbd5e1;
+    --gray-800: #e2e8f0;
+    --gray-900: #f8fafc;
+    --teal-light: #1a3a30;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--gray-800);
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.dark { background: #0f172a; color: #e2e8f0; }
+
+  /* ====== UTILITY ====== */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 80px 0; }
+  .section-sm { padding: 48px 0; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px,4vw,40px); font-weight: 700; color: var(--dark-blue); margin-bottom: 12px; }
+  body.dark .section-title { color: #60a5fa; }
+  .section-sub { color: var(--gray-600); font-size: 17px; max-width: 580px; }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin: 0 auto; }
+  .flex { display: flex; }
+  .items-center { align-items: center; }
+  .justify-between { justify-content: space-between; }
+  .gap-4 { gap: 16px; }
+  .gap-6 { gap: 24px; }
+  .gap-8 { gap: 32px; }
+  .grid { display: grid; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
+  .grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
+  .hidden { display: none !important; }
+
+  /* ====== BUTTONS ====== */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: var(--radius);
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    border: none; text-decoration: none; transition: var(--transition);
+    letter-spacing: 0.01em; white-space: nowrap;
+  }
+  .btn-primary { background: var(--teal); color: #fff; }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-outline { background: transparent; border: 2px solid var(--teal); color: var(--teal); }
+  .btn-outline:hover { background: var(--teal); color: #fff; }
+  .btn-blue { background: var(--dark-blue); color: #fff; }
+  .btn-blue:hover { background: var(--mid-blue); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-red { background: var(--red); color: #fff; }
+  .btn-red:hover { background: #dc2626; }
+  .btn-lg { padding: 18px 36px; font-size: 18px; border-radius: 14px; }
+  .btn-sm { padding: 10px 20px; font-size: 14px; }
+
+  /* ====== NAVBAR ====== */
+  #navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--gray-200);
+    transition: var(--transition);
+  }
+  body.dark #navbar { background: rgba(15,23,42,0.96); border-color: #334155; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: 1280px; margin: 0 auto; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-img { width: 44px; height: 44px; object-fit: contain; border-radius: 10px; }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--dark-blue); line-height: 1.1; }
+  body.dark .logo-text { color: #60a5fa; }
+  .logo-sub { font-size: 11px; color: var(--teal); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-link { padding: 8px 14px; border-radius: 8px; font-size: 15px; font-weight: 500; color: var(--gray-700); text-decoration: none; transition: var(--transition); cursor: pointer; background: none; border: none; }
+  body.dark .nav-link { color: #cbd5e1; }
+  .nav-link:hover, .nav-link.active { color: var(--teal); background: var(--teal-light); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .dark-toggle { background: var(--gray-100); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-700); transition: var(--transition); }
+  body.dark .dark-toggle { background: #334155; color: #fbbf24; }
+  .dark-toggle:hover { background: var(--teal-light); color: var(--teal); }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mob-menu { display: none; flex-direction: column; gap: 4px; padding: 16px 24px 20px; border-top: 1px solid var(--gray-200); background: var(--white); }
+  body.dark .mob-menu { background: #0f172a; border-color: #334155; }
+  .mob-menu.open { display: flex; }
+  .mob-link { padding: 12px 16px; border-radius: 8px; font-size: 16px; font-weight: 500; color: var(--gray-700); text-decoration: none; transition: var(--transition); cursor: pointer; background: none; border: none; width: 100%; text-align: left; }
+  body.dark .mob-link { color: #cbd5e1; }
+  .mob-link:hover { background: var(--teal-light); color: var(--teal); }
+
+  /* ====== EMERGENCY BAR ====== */
+  .emergency-bar {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white; text-align: center;
+    padding: 10px 24px; font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    position: fixed; top: 73px; left: 0; right: 0; z-index: 999;
+    transform: translateY(-100%); transition: transform 0.3s;
+  }
+  .emergency-bar.show { transform: translateY(0); }
+  .emergency-bar a { color: #fff; text-decoration: underline; }
+
+  /* ====== HERO ====== */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8edf8 0%, #f0f7f4 50%, #e6f7f3 100%);
+    display: flex; align-items: center;
+    padding-top: 90px;
+    position: relative; overflow: hidden;
+  }
+  body.dark #hero { background: linear-gradient(135deg, #0f172a 0%, #1a2540 50%, #0f2a20 100%); }
+  .hero-blob {
+    position: absolute; border-radius: 50%; opacity: 0.12; pointer-events: none;
+  }
+  .hero-blob-1 { width: 600px; height: 600px; background: var(--teal); top: -200px; right: -100px; }
+  .hero-blob-2 { width: 400px; height: 400px; background: var(--dark-blue); bottom: -100px; left: -100px; }
+  .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--teal-light); color: var(--teal); border: 1px solid rgba(26,171,139,0.3); border-radius: 50px; padding: 8px 18px; font-size: 13px; font-weight: 600; margin-bottom: 20px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 54px); font-weight: 700; color: var(--dark-blue); line-height: 1.15; margin-bottom: 20px; }
+  body.dark .hero-title { color: #e2e8f0; }
+  .hero-title span { color: var(--teal); }
+  .hero-desc { font-size: 17px; color: var(--gray-600); margin-bottom: 32px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; color: var(--dark-blue); }
+  body.dark .stat-num { color: #60a5fa; }
+  .stat-label { font-size: 13px; color: var(--gray-600); }
+  .hero-right { position: relative; }
+  .hero-card {
+    background: var(--white); border-radius: var(--radius-xl);
+    padding: 28px; box-shadow: var(--shadow-xl);
+    border: 1px solid var(--gray-200);
+  }
+  body.dark .hero-card { background: #1e293b; border-color: #334155; }
+  .hero-card h3 { font-size: 20px; font-weight: 700; color: var(--dark-blue); margin-bottom: 6px; }
+  body.dark .hero-card h3 { color: #e2e8f0; }
+  .hero-card p { color: var(--gray-600); font-size: 14px; margin-bottom: 20px; }
+  .form-group { margin-bottom: 14px; }
+  .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
+  body.dark .form-label { color: #94a3b8; }
+  .form-input, .form-select {
+    width: 100%; padding: 12px 16px; border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius); font-size: 15px; background: var(--gray-50);
+    color: var(--gray-800); transition: var(--transition); outline: none;
+    font-family: 'Inter', sans-serif;
+  }
+  body.dark .form-input, body.dark .form-select { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+  .form-input:focus, .form-select:focus { border-color: var(--teal); background: #fff; box-shadow: 0 0 0 3px rgba(26,171,139,0.1); }
+  body.dark .form-input:focus, body.dark .form-select:focus { background: #1e293b; }
+  .floating-badge {
+    position: absolute; background: var(--white); border-radius: var(--radius);
+    padding: 12px 16px; box-shadow: var(--shadow-lg); border: 1px solid var(--gray-200);
+    display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600;
+  }
+  body.dark .floating-badge { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+  .float-1 { top: -20px; right: -20px; color: var(--teal); }
+  .float-2 { bottom: -20px; left: -20px; color: var(--dark-blue); }
+
+  /* ====== SERVICES ====== */
+  #services { background: var(--gray-50); }
+  body.dark #services { background: #1e293b; }
+  .service-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    padding: 28px; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200);
+    transition: var(--transition); cursor: pointer; text-decoration: none; display: block;
+  }
+  body.dark .service-card { background: #0f172a; border-color: #334155; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: var(--teal); }
+  .service-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 26px; }
+  .service-card h3 { font-size: 18px; font-weight: 700; color: var(--dark-blue); margin-bottom: 8px; }
+  body.dark .service-card h3 { color: #e2e8f0; }
+  .service-card p { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+  .service-link { display: inline-flex; align-items: center; gap: 4px; color: var(--teal); font-size: 14px; font-weight: 600; margin-top: 14px; }
+
+  /* ====== DOCTORS ====== */
+  .doctor-card {
+    background: var(--white); border-radius: var(--radius-xl);
+    overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--gray-200);
+    transition: var(--transition);
+  }
+  body.dark .doctor-card { background: #1e293b; border-color: #334155; }
+  .doctor-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+  .doctor-img-wrap { height: 220px; background: linear-gradient(135deg, #e8edf8, #e6f7f3); display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; }
+  .doctor-avail { position: absolute; top: 14px; right: 14px; background: #10b981; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 50px; }
+  .doctor-info { padding: 20px; }
+  .doctor-name { font-size: 18px; font-weight: 700; color: var(--dark-blue); }
+  body.dark .doctor-name { color: #e2e8f0; }
+  .doctor-spec { color: var(--teal); font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .doctor-exp { font-size: 13px; color: var(--gray-600); margin-bottom: 14px; }
+  .stars { color: #f59e0b; font-size: 14px; margin-bottom: 4px; }
+
+  /* ====== APPOINTMENT ====== */
+  #appointment { background: linear-gradient(135deg, var(--dark-blue), var(--mid-blue)); }
+  .appt-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .appt-left h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px,3.5vw,40px); color: #fff; margin-bottom: 16px; }
+  .appt-left p { color: rgba(255,255,255,0.75); font-size: 17px; margin-bottom: 28px; }
+  .appt-feature { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.9); font-size: 15px; margin-bottom: 12px; }
+  .appt-feature-icon { width: 32px; height: 32px; background: rgba(26,171,139,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--teal); flex-shrink: 0; }
+  .appt-form { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border-radius: var(--radius-xl); padding: 32px; border: 1px solid rgba(255,255,255,0.15); }
+  .appt-form .form-label { color: rgba(255,255,255,0.85); }
+  .appt-form .form-input, .appt-form .form-select { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; }
+  .appt-form .form-input::placeholder { color: rgba(255,255,255,0.5); }
+  .appt-form .form-input:focus, .appt-form .form-select:focus { background: rgba(255,255,255,0.15); border-color: var(--teal); }
+  .appt-form option { background: #23408e; color: #fff; }
+
+  /* ====== TESTIMONIALS ====== */
+  #testimonials { background: var(--gray-50); }
+  body.dark #testimonials { background: #1e293b; }
+  .testimonial-card {
+    background: var(--white); border-radius: var(--radius-lg); padding: 28px;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200); position: relative;
+  }
+  body.dark .testimonial-card { background: #0f172a; border-color: #334155; }
+  .testimonial-quote { font-size: 48px; color: var(--teal); opacity: 0.3; line-height: 1; position: absolute; top: 14px; right: 20px; }
+  .testimonial-text { font-size: 15px; color: var(--gray-600); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--dark-blue)); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .testimonial-name { font-weight: 700; color: var(--gray-800); font-size: 15px; }
+  body.dark .testimonial-name { color: #e2e8f0; }
+  .testimonial-loc { font-size: 13px; color: var(--gray-600); }
+
+  /* ====== ABOUT ====== */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .about-visual { border-radius: var(--radius-xl); background: linear-gradient(135deg, #e8edf8, #e6f7f3); height: 400px; display: flex; align-items: center; justify-content: center; font-size: 100px; position: relative; overflow: hidden; }
+  .about-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  .about-stat-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 18px; text-align: center; }
+  body.dark .about-stat-card { background: #1e293b; border-color: #334155; }
+  .about-stat-num { font-size: 28px; font-weight: 800; color: var(--dark-blue); }
+  body.dark .about-stat-num { color: #60a5fa; }
+  .about-stat-label { font-size: 13px; color: var(--gray-600); }
+  .mission-card { background: var(--teal-light); border-radius: var(--radius); padding: 20px; margin-top: 20px; border-left: 4px solid var(--teal); }
+  body.dark .mission-card { background: #1a3a30; }
+  .mission-card h4 { color: var(--teal-dark); font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .mission-card p { color: var(--gray-700); font-size: 14px; }
+  body.dark .mission-card p { color: #94a3b8; }
+
+  /* ====== INSURANCE ====== */
+  #insurance { background: var(--white); }
+  body.dark #insurance { background: #0f172a; }
+  .insurance-logos { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 32px; }
+  .insurance-logo { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 14px 24px; font-weight: 700; font-size: 14px; color: var(--gray-600); transition: var(--transition); }
+  body.dark .insurance-logo { background: #1e293b; border-color: #334155; color: #94a3b8; }
+  .insurance-logo:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ====== MAP ====== */
+  #map-section { background: var(--gray-50); }
+  body.dark #map-section { background: #1e293b; }
+  .map-wrap { border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--gray-200); height: 380px; margin-top: 32px; }
+  .map-wrap iframe { width: 100%; height: 100%; border: none; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .contact-info { padding-top: 16px; }
+  .contact-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; padding: 16px; background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); }
+  body.dark .contact-item { background: #0f172a; border-color: #334155; }
+  .contact-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--teal-light); display: flex; align-items: center; justify-content: center; color: var(--teal); flex-shrink: 0; }
+  .contact-label { font-size: 12px; color: var(--gray-600); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .contact-val { font-size: 15px; font-weight: 600; color: var(--gray-800); }
+  body.dark .contact-val { color: #e2e8f0; }
+
+  /* ====== FOOTER ====== */
+  footer { background: var(--gray-900); color: rgba(255,255,255,0.75); padding: 60px 0 0; }
+  body.dark footer { background: #020617; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .footer-brand .logo-text { color: #fff; }
+  .footer-brand p { font-size: 14px; margin-top: 12px; line-height: 1.7; }
+  .footer-title { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+  .footer-link { display: block; color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 10px; text-decoration: none; transition: var(--transition); }
+  .footer-link:hover { color: var(--teal); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; text-align: center; font-size: 13px; color: rgba(255,255,255,0.4); }
+  .footer-social { display: flex; gap: 10px; margin-top: 16px; }
+  .social-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 16px; transition: var(--transition); }
+  .social-btn:hover { background: var(--teal); color: #fff; }
+
+  /* ====== AI CHATBOT ====== */
+  .chat-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 2000;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--dark-blue));
+    border: none; cursor: pointer; box-shadow: var(--shadow-xl);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 24px; transition: var(--transition);
+    animation: pulse-ring 2.5s infinite;
+  }
+  .chat-fab:hover { transform: scale(1.1); }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(26,171,139,0.4), var(--shadow-xl); }
+    70% { box-shadow: 0 0 0 16px rgba(26,171,139,0), var(--shadow-xl); }
+    100% { box-shadow: 0 0 0 0 rgba(26,171,139,0), var(--shadow-xl); }
+  }
+  .chat-window {
+    position: fixed; bottom: 96px; right: 24px; z-index: 2000;
+    width: 380px; max-height: 600px;
+    background: var(--white); border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl); border: 1px solid var(--gray-200);
+    display: flex; flex-direction: column; overflow: hidden;
+    transform: scale(0.8) translateY(20px); opacity: 0; pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: bottom right;
+  }
+  body.dark .chat-window { background: #1e293b; border-color: #334155; }
+  .chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+  .chat-header {
+    background: linear-gradient(135deg, var(--teal), var(--dark-blue));
+    padding: 16px 20px; color: #fff; display: flex; align-items: center; gap: 12px;
+  }
+  .chat-avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .chat-header-info h4 { font-size: 15px; font-weight: 700; }
+  .chat-header-info p { font-size: 12px; opacity: 0.8; }
+  .chat-header-close { margin-left: auto; background: none; border: none; color: #fff; cursor: pointer; padding: 4px; border-radius: 6px; }
+  .chat-header-close:hover { background: rgba(255,255,255,0.2); }
+  .chat-disclaimer { background: #fef3c7; border-bottom: 1px solid #fde68a; padding: 10px 16px; font-size: 12px; color: #92400e; display: flex; gap: 8px; align-items: flex-start; }
+  body.dark .chat-disclaimer { background: #292304; border-color: #451a03; color: #fbbf24; }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-height: 200px; max-height: 340px; }
+  .chat-msg { max-width: 85%; display: flex; flex-direction: column; gap: 4px; }
+  .chat-msg.bot { align-self: flex-start; }
+  .chat-msg.user { align-self: flex-end; }
+  .chat-bubble {
+    padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5;
+  }
+  .chat-msg.bot .chat-bubble { background: var(--gray-100); color: var(--gray-800); border-radius: 4px 16px 16px 16px; }
+  body.dark .chat-msg.bot .chat-bubble { background: #0f172a; color: #e2e8f0; }
+  .chat-msg.user .chat-bubble { background: linear-gradient(135deg, var(--teal), var(--dark-blue)); color: #fff; border-radius: 16px 4px 16px 16px; }
+  .chat-time { font-size: 11px; color: var(--gray-600); }
+  .chat-msg.user .chat-time { text-align: right; }
+  .chat-quick { padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--gray-200); }
+  body.dark .chat-quick { border-color: #334155; }
+  .chat-quick-btn { padding: 6px 12px; border: 1.5px solid var(--teal); border-radius: 50px; font-size: 12px; color: var(--teal); background: none; cursor: pointer; transition: var(--transition); font-family: 'Inter', sans-serif; }
+  .chat-quick-btn:hover { background: var(--teal); color: #fff; }
+  .chat-input-row { padding: 12px 16px; border-top: 1px solid var(--gray-200); display: flex; gap: 8px; }
+  body.dark .chat-input-row { border-color: #334155; }
+  .chat-input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--gray-200); border-radius: 50px; font-size: 14px; outline: none; background: var(--gray-50); color: var(--gray-800); font-family: 'Inter', sans-serif; transition: var(--transition); }
+  body.dark .chat-input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+  .chat-input:focus { border-color: var(--teal); }
+  .chat-send { width: 40px; height: 40px; border-radius: 50%; background: var(--teal); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; transition: var(--transition); }
+  .chat-send:hover { background: var(--teal-dark); }
+  .chat-typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; background: var(--gray-100); border-radius: 4px 16px 16px 16px; width: fit-content; }
+  body.dark .chat-typing { background: #0f172a; }
+  .typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gray-600); animation: typing-bounce 1.2s infinite; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  .emergency-banner { background: #fef2f2; border: 2px solid var(--red); border-radius: var(--radius); padding: 12px 16px; font-size: 13px; color: #991b1b; font-weight: 600; margin: 8px 16px; display: none; }
+  .emergency-banner.show { display: block; }
+
+  /* ====== PATIENT PORTAL ====== */
+  .portal-tabs { display: flex; gap: 0; margin-bottom: 28px; border: 1.5px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+  body.dark .portal-tabs { border-color: #334155; }
+  .portal-tab { flex: 1; padding: 14px; text-align: center; font-size: 15px; font-weight: 600; cursor: pointer; background: var(--gray-50); color: var(--gray-600); border: none; transition: var(--transition); font-family: 'Inter', sans-serif; }
+  body.dark .portal-tab { background: #1e293b; color: #94a3b8; }
+  .portal-tab.active { background: var(--teal); color: #fff; }
+  .portal-content { display: none; }
+  .portal-content.active { display: block; }
+
+  /* ====== ADMIN DASHBOARD ====== */
+  .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin-bottom: 32px; }
+  .admin-stat { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px; }
+  body.dark .admin-stat { background: #0f172a; border-color: #334155; }
+  .admin-stat-val { font-size: 32px; font-weight: 800; color: var(--dark-blue); }
+  body.dark .admin-stat-val { color: #60a5fa; }
+  .admin-stat-label { font-size: 14px; color: var(--gray-600); margin-top: 4px; }
+  .admin-stat-trend { font-size: 12px; color: #10b981; margin-top: 8px; font-weight: 600; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .data-table th { padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-600); background: var(--gray-50); border-bottom: 2px solid var(--gray-200); }
+  body.dark .data-table th { background: #1e293b; border-color: #334155; color: #94a3b8; }
+  .data-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-200); color: var(--gray-700); }
+  body.dark .data-table td { border-color: #334155; color: #cbd5e1; }
+  .data-table tr:hover td { background: var(--gray-50); }
+  body.dark .data-table tr:hover td { background: #1e293b; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 50px; font-size: 12px; font-weight: 600; }
+  .badge-green { background: #d1fae5; color: #065f46; }
+  .badge-yellow { background: #fef3c7; color: #92400e; }
+  .badge-red { background: #fee2e2; color: #991b1b; }
+  .badge-blue { background: #dbeafe; color: #1e40af; }
+  body.dark .badge-green { background: #052e16; color: #34d399; }
+  body.dark .badge-yellow { background: #292304; color: #fbbf24; }
+  body.dark .badge-red { background: #450a0a; color: #f87171; }
+  body.dark .badge-blue { background: #0f2a4a; color: #60a5fa; }
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--gray-200); }
+  body.dark .table-wrap { border-color: #334155; }
+
+  /* ====== PAGE SECTIONS ====== */
+  .page-hero { background: linear-gradient(135deg, var(--dark-blue), var(--mid-blue)); padding: 120px 0 60px; color: #fff; text-align: center; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px,5vw,48px); font-weight: 700; margin-bottom: 14px; }
+  .page-hero p { font-size: 18px; opacity: 0.8; max-width: 580px; margin: 0 auto; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 14px; opacity: 0.7; margin-bottom: 16px; justify-content: center; }
+
+  /* ====== MODAL ====== */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--white); border-radius: var(--radius-xl); padding: 36px;
+    max-width: 520px; width: 90%; box-shadow: var(--shadow-xl);
+    transform: scale(0.9); transition: transform 0.3s; max-height: 90vh; overflow-y: auto;
+  }
+  body.dark .modal { background: #1e293b; }
+  .modal-overlay.open .modal { transform: scale(1); }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--dark-blue); }
+  body.dark .modal-title { color: #e2e8f0; }
+  .modal-close { background: var(--gray-100); border: none; border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-600); transition: var(--transition); }
+  body.dark .modal-close { background: #334155; color: #94a3b8; }
+  .modal-close:hover { background: var(--red); color: #fff; }
+
+  /* ====== TOAST ====== */
+  .toast {
+    position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(40px);
+    background: var(--gray-800); color: #fff; padding: 14px 24px; border-radius: var(--radius);
+    font-size: 15px; font-weight: 500; z-index: 4000; opacity: 0; transition: all 0.3s;
+    display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-xl);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.success { background: #065f46; }
+  .toast.error { background: #991b1b; }
+
+  /* ====== SKELETON ====== */
+  .skeleton { background: linear-gradient(90deg, var(--gray-200) 25%, var(--gray-100) 50%, var(--gray-200) 75%); background-size: 200% 100%; animation: skeleton-wave 1.5s infinite; border-radius: var(--radius); }
+  @keyframes skeleton-wave { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* ====== SCROLL ANIMATIONS ====== */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 900px) {
+    .hero-inner, .appt-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-right { order: -1; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .chat-window { width: calc(100vw - 32px); right: 16px; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+    .btn-lg { padding: 14px 24px; font-size: 16px; }
+    .section { padding: 56px 0; }
+    .portal-tabs { flex-direction: column; }
+  }
+
+  /* ====== WHATSAPP ====== */
+  .whatsapp-float {
+    position: fixed; bottom: 96px; right: 24px; z-index: 1999;
+    display: none;
+  }
+
+  /* ====== PROGRESS BAR ====== */
+  #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--teal); z-index: 9999; width: 0%; transition: width 0.1s; }
+
+  /* ====== SCROLL TO TOP ====== */
+  #scroll-top {
+    position: fixed; bottom: 24px; left: 24px; z-index: 1998;
+    width: 44px; height: 44px; border-radius: 50%; background: var(--dark-blue);
+    color: #fff; border: none; cursor: pointer; box-shadow: var(--shadow-lg);
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+    opacity: 0; transform: translateY(20px); transition: all 0.3s;
+  }
+  #scroll-top.show { opacity: 1; transform: translateY(0); }
+  #scroll-top:hover { background: var(--teal); }
+
+  /* ====== TABS ====== */
+  .tab-nav { display: flex; gap: 6px; border-bottom: 2px solid var(--gray-200); margin-bottom: 28px; flex-wrap: wrap; }
+  body.dark .tab-nav { border-color: #334155; }
+  .tab-btn { padding: 10px 20px; border: none; background: none; font-size: 15px; font-weight: 600; color: var(--gray-600); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: var(--transition); font-family: 'Inter', sans-serif; }
+  body.dark .tab-btn { color: #94a3b8; }
+  .tab-btn.active { color: var(--teal); border-color: var(--teal); }
+
+  /* ====== HIGHLIGHT ====== */
+  .highlight-teal { color: var(--teal); }
+  .highlight-blue { color: var(--dark-blue); }
+  body.dark .highlight-blue { color: #60a5fa; }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- Emergency Bar -->
+<div class="emergency-bar" id="emergencyBar">
+  ⚠️ EMERGENCY? Call immediately: <a href="tel:+919043916280">+91 90439 16280</a> or dial <strong>108</strong>
+  <button onclick="document.getElementById('emergencyBar').classList.remove('show')" style="background:none;border:none;color:#fff;cursor:pointer;margin-left:8px;">✕</button>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo" onclick="showPage('home')">
+      <img src="/mnt/user-data/uploads/466a95e70b96ccfce46dd1d61a12ccb9.jpg" alt="MedCare Logo" class="logo-img" onerror="this.style.display='none'">
+      <div>
+        <div class="logo-text">MedCare</div>
+        <div class="logo-sub">Multi-Speciality Clinic</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showPage('home')">Home</button>
+      <button class="nav-link" onclick="showPage('about')">About</button>
+      <button class="nav-link" onclick="showPage('services')">Services</button>
+      <button class="nav-link" onclick="showPage('doctors')">Doctors</button>
+      <button class="nav-link" onclick="showPage('appointment')">Appointments</button>
+      <button class="nav-link" onclick="showPage('portal')">Patient Portal</button>
+      <button class="nav-link" onclick="showPage('admin')">Admin</button>
+    </div>
+    <div class="nav-actions">
+      <button class="dark-toggle" onclick="toggleDark()" title="Toggle dark mode">
+        <span id="darkIcon">🌙</span>
+      </button>
+      <a href="tel:+919043916280" class="btn btn-red btn-sm">🚨 Emergency</a>
+      <button class="btn btn-primary btn-sm" onclick="showPage('appointment')">Book Now</button>
+      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mob-menu" id="mobMenu">
+    <button class="mob-link" onclick="showPage('home');toggleMobileMenu()">🏠 Home</button>
+    <button class="mob-link" onclick="showPage('about');toggleMobileMenu()">ℹ️ About Us</button>
+    <button class="mob-link" onclick="showPage('services');toggleMobileMenu()">🏥 Services</button>
+    <button class="mob-link" onclick="showPage('doctors');toggleMobileMenu()">👨‍⚕️ Doctors</button>
+    <button class="mob-link" onclick="showPage('appointment');toggleMobileMenu()">📅 Appointments</button>
+    <button class="mob-link" onclick="showPage('portal');toggleMobileMenu()">👤 Patient Portal</button>
+    <button class="mob-link" onclick="showPage('admin');toggleMobileMenu()">⚙️ Admin</button>
+  </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home">
+
+<!-- HERO -->
+<section id="home" style="padding-top:73px;">
+  <div style="background:linear-gradient(135deg,#e8edf8 0%,#f0f7f4 50%,#e6f7f3 100%);min-height:calc(100vh - 73px);display:flex;align-items:center;padding:60px 0;position:relative;overflow:hidden;">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-badge">
+            <span>✅</span> NABH Accredited Multi-Speciality Clinic
+          </div>
+          <h1 class="hero-title">
+            Your Health,<br>Our <span>Priority</span>.<br>Expert Care.
+          </h1>
+          <p class="hero-desc">Advanced medical care with compassion. From routine check-ups to complex treatments, MedCare's expert team is here for you and your family across all specialities.</p>
+          <div class="hero-btns">
+            <button class="btn btn-primary btn-lg" onclick="showPage('appointment')">
+              📅 Book Appointment
+            </button>
+            <button class="btn btn-outline btn-lg" onclick="openChat()">
+              🤖 AI Symptom Check
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><div class="stat-num">15K+</div><div class="stat-label">Patients Served</div></div>
+            <div class="stat"><div class="stat-num">25+</div><div class="stat-label">Expert Doctors</div></div>
+            <div class="stat"><div class="stat-num">12</div><div class="stat-label">Specialities</div></div>
+            <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Emergency Care</div></div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-card" style="position:relative;">
+            <div class="floating-badge float-1">✅ Verified Doctors</div>
+            <h3>Quick Appointment</h3>
+            <p>Book your consultation in under 2 minutes</p>
+            <div class="form-group">
+              <label class="form-label">Select Speciality</label>
+              <select class="form-select" id="doctor">
+                <option value="">Choose a speciality...</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Diabetes Care">Diabetes Care</option>
+                <option value="Women's Health">Women's Health</option>
+                <option value="Diagnostics">Diagnostics</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Neurology">Neurology</option>
+              </select>
+              <option value="General Physician">General Physician</option>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preferred Date</label>
+              <input type="date" class="form-input" id="date">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" placeholder="Enter your full name" id="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number</label>
+              <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" id="phone">
+            </div>
+            <button type="button" class="btn btn-primary" style="width:100%;justify-content:center;" onclick="submitAppointment()">
+              Book Appointment →
+            </button>
+            <div class="floating-badge float-2">🏥 25+ Specialists</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services-home" style="background:var(--gray-50);">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px;">
+      <div class="hero-badge" style="justify-content:center;">Our Services</div>
+      <h2 class="section-title">World-Class Medical Specialities</h2>
+      <p class="section-sub">Comprehensive healthcare across all major specialities with state-of-the-art facilities and expert physicians.</p>
+    </div>
+    <div class="grid grid-3 gap-6">
+      <div class="service-card fade-up">
+        <div class="service-icon" style="background:#e6f7f3;color:var(--teal);">🩺</div>
+        <h3>General Physician</h3>
+        <p>Comprehensive primary care for all ages including health check-ups, preventive care, and management of common illnesses.</p>
+        <div class="service-link">Learn more →</div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon" style="background:#fef3c7;color:#d97706;">❤️</div>
+        <h3>Cardiology</h3>
+        <p>Advanced cardiac care including ECG, echo, stress tests, and management of heart diseases by experienced cardiologists.</p>
+        <div class="service-link">Learn more →</div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon" style="background:#ede9fe;color:#7c3aed;">👶</div>
+        <h3>Pediatrics</h3>
+        <p>Specialized child healthcare from newborns to teenagers, including vaccinations and developmental assessments.</p>
+        <div class="service-link">Learn more →</div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon" style="background:#fee2e2;color:#dc2626;">💉</div>
+        <h3>Diabetes Care</h3>
+        <p>Holistic diabetes management including blood sugar monitoring, diet counselling, and complication prevention programs.</p>
+        <div class="service-link">Learn more →</div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon" style="background:#fce7f3;color:#be185d;">👩‍⚕️</div>
+        <h3>Women's Health</h3>
+        <p>Complete gynecological care, antenatal check-ups, fertility consultations, and menopause management.</p>
+        <div class="service-link">Learn more →</div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon" style="background:#e0f2fe;color:#0284c7;">🔬</div>
+        <h3>Diagnostics Lab</h3>
+        <p>In-house NABL-certified lab with 200+ tests, digital X-ray, ultrasound, and reports within 4 hours.</p>
+        <div class="service-link">Learn more →</div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:36px;">
+      <button class="btn btn-blue" onclick="showPage('services')">View All Services →</button>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS PREVIEW -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px;">
+      <div class="hero-badge" style="justify-content:center;">Meet Our Team</div>
+      <h2 class="section-title">Expert Doctors. Compassionate Care.</h2>
+      <p class="section-sub">Our team of 25+ experienced specialists are committed to delivering the highest standard of healthcare.</p>
+    </div>
+    <div class="grid grid-4 gap-6">
+      <div class="doctor-card fade-up">
+        <div class="doctor-img-wrap">👨‍⚕️<div class="doctor-avail">Available Today</div></div>
+        <div class="doctor-info">
+          <div class="stars">★★★★★</div>
+          <div class="doctor-name">Dr. Rajesh Kumar</div>
+          <div class="doctor-spec">Chief Cardiologist</div>
+          <div class="doctor-exp">MBBS, MD, DM Cardiology · 18 Yrs</div>
+          <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Now</button>
+        </div>
+      </div>
+      <div class="doctor-card fade-up">
+        <div class="doctor-img-wrap">👩‍⚕️<div class="doctor-avail">Available Today</div></div>
+        <div class="doctor-info">
+          <div class="stars">★★★★★</div>
+          <div class="doctor-name">Dr. Priya Sharma</div>
+          <div class="doctor-spec">Senior Gynecologist</div>
+          <div class="doctor-exp">MBBS, MS OBG · 14 Yrs</div>
+          <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Now</button>
+        </div>
+      </div>
+      <div class="doctor-card fade-up">
+        <div class="doctor-img-wrap">👨‍⚕️<div class="doctor-avail">Available Today</div></div>
+        <div class="doctor-info">
+          <div class="stars">★★★★☆</div>
+          <div class="doctor-name">Dr. Suresh Menon</div>
+          <div class="doctor-spec">Diabetologist</div>
+          <div class="doctor-exp">MBBS, MD Medicine · 12 Yrs</div>
+          <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Now</button>
+        </div>
+      </div>
+      <div class="doctor-card fade-up">
+        <div class="doctor-img-wrap">👩‍⚕️<div class="doctor-avail" style="background:#f59e0b;">Tomorrow</div></div>
+        <div class="doctor-info">
+          <div class="stars">★★★★★</div>
+          <div class="doctor-name">Dr. Ananya Patel</div>
+          <div class="doctor-spec">Pediatrician</div>
+          <div class="doctor-exp">MBBS, DCH, DNB · 10 Yrs</div>
+          <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:36px;">
+      <button class="btn btn-outline" onclick="showPage('doctors')">Meet All Doctors →</button>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT CTA -->
+<section class="section" style="background:linear-gradient(135deg,var(--dark-blue),var(--mid-blue));">
+  <div class="container">
+    <div class="appt-inner">
+      <div class="appt-left">
+        <h2>Book Your Appointment Today</h2>
+        <p>Get expert medical consultation from the comfort of your home or visit us at our clinic. Available 7 days a week.</p>
+        <div class="appt-feature"><div class="appt-feature-icon">📅</div> Same-day appointments available</div>
+        <div class="appt-feature"><div class="appt-feature-icon">💻</div> Online & in-person consultations</div>
+        <div class="appt-feature"><div class="appt-feature-icon">🔔</div> Automated reminders via SMS & WhatsApp</div>
+        <div class="appt-feature"><div class="appt-feature-icon">🔒</div> Secure, HIPAA-compliant records</div>
+        <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="showPage('appointment')">Book Online</button>
+          <a href="https://wa.me/919043916280?text=Hi%2C%20I%20want%20to%20book%20an%20appointment" target="_blank" class="btn" style="background:#25d366;color:#fff;">
+            💬 WhatsApp Us
+          </a>
+        </div>
+      </div>
+      <div class="appt-form">
+        <h3 style="color:#fff;font-size:18px;font-weight:700;margin-bottom:20px;">Quick Appointment Request</h3>
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input type="text" class="form-input" placeholder="Your name" id="ctaName">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mobile Number *</label>
+          <input type="tel" class="form-input" placeholder="+91 90439 16280" id="ctaPhone">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department *</label>
+          <select class="form-select" id="ctaDept">
+            <option value="">Select department</option>
+            <option>General Physician</option>
+            <option>Cardiology</option>
+            <option>Pediatrics</option>
+            <option>Diabetes Care</option>
+            <option>Women's Health</option>
+            <option>Diagnostics</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Date *</label>
+          <input type="date" class="form-input" id="ctaDate">
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="submitCtaBooking()">Request Appointment →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--gray-50);">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px;">
+      <h2 class="section-title">What Our Patients Say</h2>
+      <p class="section-sub">Thousands of patients trust MedCare for their healthcare needs. Here's what they have to say.</p>
+    </div>
+    <div class="grid grid-3 gap-6">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The care I received at MedCare was exceptional. Dr. Rajesh identified my heart condition early and the entire team was so supportive throughout my treatment.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R</div>
+          <div><div class="testimonial-name">Raman Iyer</div><div class="testimonial-loc">Chennai, Tamil Nadu</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Excellent pediatric care for my son. Dr. Ananya is wonderful with children. The online booking system is so convenient, no waiting in queues!</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div><div class="testimonial-name">Sunitha Krishnan</div><div class="testimonial-loc">Coimbatore, Tamil Nadu</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">MedCare's diabetes management programme changed my life. My HbA1c is under control and the team regularly follows up. Highly recommended!</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div><div class="testimonial-name">Arjun Mehta</div><div class="testimonial-loc">Madurai, Tamil Nadu</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section class="section-sm" style="background:var(--white);">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:28px;">
+      <p style="font-size:15px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:1px;">We Accept All Major Insurance Plans</p>
+    </div>
+    <div class="insurance-logos">
+      <div class="insurance-logo">🏥 Star Health</div>
+      <div class="insurance-logo">🛡️ HDFC ERGO</div>
+      <div class="insurance-logo">💼 New India</div>
+      <div class="insurance-logo">🔵 ICICI Lombard</div>
+      <div class="insurance-logo">🟢 Max Bupa</div>
+      <div class="insurance-logo">🔴 Bajaj Allianz</div>
+      <div class="insurance-logo">📋 United India</div>
+      <div class="insurance-logo">💛 Oriental Insurance</div>
+      <div class="insurance-logo">🏛️ Ayushman Bharat</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP & CONTACT -->
+<section class="section" style="background:var(--gray-50);" id="contact">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <h2 class="section-title">Find Us</h2>
+      <p class="section-sub">Visit us at our clinic. We're conveniently located and easily accessible.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-val">MedCare Multi-Speciality Clinic<br>Chennai, Tamil Nadu, India</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-val"><a href="tel:+919043916280" style="color:var(--teal);text-decoration:none;">+91 90439 16280</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:multispecialtymedcare@gmail.com" style="color:var(--teal);text-decoration:none;">multispecialtymedcare@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Working Hours</div>
+            <div class="contact-val">Mon–Sat: 8AM–9PM<br>Sun: 9AM–1PM | Emergency: 24/7</div>
+          </div>
+        </div>
+        <a href="https://wa.me/919043916280?text=Hello%2C%20I%20need%20medical%20assistance" target="_blank" class="btn" style="background:#25d366;color:#fff;margin-top:8px;">
+          💬 Chat on WhatsApp
+        </a>
+      </div>
+      <div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.56659828558!2d80.06892860000001!3d13.047526700000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-home -->
+
+<!-- ===== ABOUT PAGE ===== -->
+<div id="page-about" class="hidden">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home → About Us</div>
+      <h1>About MedCare</h1>
+      <p>Delivering compassionate, world-class healthcare to communities across Tamil Nadu since 2008.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="hero-badge">Our Story</div>
+          <h2 class="section-title">15+ Years of Trusted Healthcare</h2>
+          <p style="color:var(--gray-600);margin-bottom:16px;line-height:1.8;">Founded in 2008, MedCare Multi-Speciality Clinic began with a simple vision: to make expert medical care accessible, affordable, and compassionate for every patient who walks through our doors.</p>
+          <p style="color:var(--gray-600);margin-bottom:24px;line-height:1.8;">Today, we have grown into one of Tamil Nadu's most trusted healthcare institutions, serving over 15,000 patients annually with a team of 25+ specialist doctors and 100+ support staff across 12 specialities.</p>
+          <div class="mission-card">
+            <h4>🎯 Our Mission</h4>
+            <p>To provide compassionate, evidence-based, and patient-centred healthcare that improves the quality of life for every individual and family we serve.</p>
+          </div>
+          <div class="mission-card" style="margin-top:12px;border-left-color:var(--dark-blue);background:var(--gray-100);">
+            <h4 style="color:var(--dark-blue);">🔭 Our Vision</h4>
+            <p>To be the most trusted multi-speciality healthcare provider in South India, recognized for clinical excellence, innovation, and compassionate care.</p>
+          </div>
+        </div>
+        <div>
+          <div class="about-visual">🏥</div>
+          <div class="about-stat-grid">
+            <div class="about-stat-card"><div class="about-stat-num">15K+</div><div class="about-stat-label">Patients Served</div></div>
+            <div class="about-stat-card"><div class="about-stat-num">25+</div><div class="about-stat-label">Expert Doctors</div></div>
+            <div class="about-stat-card"><div class="about-stat-num">12</div><div class="about-stat-label">Specialities</div></div>
+            <div class="about-stat-card"><div class="about-stat-num">98%</div><div class="about-stat-label">Satisfaction Rate</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" style="background:var(--gray-50);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:40px;">
+        <h2 class="section-title">Our Facilities & Certifications</h2>
+      </div>
+      <div class="grid grid-3 gap-6">
+        <div class="service-card"><div class="service-icon" style="background:#e6f7f3;color:var(--teal);">🏆</div><h3>NABH Accredited</h3><p>National Accreditation Board for Hospitals certified, ensuring highest quality standards.</p></div>
+        <div class="service-card"><div class="service-icon" style="background:#fef3c7;color:#d97706;">🔬</div><h3>NABL Certified Lab</h3><p>In-house diagnostic laboratory with 200+ tests and rapid result turnaround.</p></div>
+        <div class="service-card"><div class="service-icon" style="background:#ede9fe;color:#7c3aed;">🩻</div><h3>Digital Imaging</h3><p>State-of-the-art digital X-ray, ultrasound, and ECG facilities.</p></div>
+        <div class="service-card"><div class="service-icon" style="background:#fee2e2;color:#dc2626;">🚑</div><h3>24/7 Emergency</h3><p>Round-the-clock emergency services with rapid response team.</p></div>
+        <div class="service-card"><div class="service-icon" style="background:#e0f2fe;color:#0284c7;">💻</div><h3>Digital Records</h3><p>Paperless electronic health records for secure and instant access.</p></div>
+        <div class="service-card"><div class="service-icon" style="background:#fce7f3;color:#be185d;">♿</div><h3>Accessible Design</h3><p>Wheelchair accessible premises with dedicated assistance for elderly patients.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== SERVICES PAGE ===== -->
+<div id="page-services" class="hidden">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home → Services</div>
+      <h1>Our Medical Services</h1>
+      <p>Comprehensive healthcare across 12 specialities with world-class facilities and expert physicians.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3 gap-6">
+        <div class="service-card">
+          <div class="service-icon" style="background:#e6f7f3;color:var(--teal);font-size:32px;">🩺</div>
+          <h3>General Physician</h3>
+          <p>Comprehensive primary care including health check-ups, preventive care, fever, infections, chronic disease management, and lifestyle counselling.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>Annual health check-ups</li><li>Fever & infection management</li><li>Chronic disease care</li><li>Health certificates</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Consultation</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#fef3c7;color:#d97706;font-size:32px;">❤️</div>
+          <h3>Cardiology</h3>
+          <p>Advanced cardiac care with state-of-the-art diagnostic equipment and highly experienced cardiologists.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>ECG & Echocardiography</li><li>Stress testing (TMT)</li><li>Hypertension management</li><li>Heart failure care</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Consultation</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#ede9fe;color:#7c3aed;font-size:32px;">👶</div>
+          <h3>Pediatrics</h3>
+          <p>Specialized care for children from birth to 18 years. Our child-friendly environment ensures a comfortable experience.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>Newborn care & vaccination</li><li>Growth monitoring</li><li>Developmental assessment</li><li>Child nutrition counselling</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Consultation</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#fee2e2;color:#dc2626;font-size:32px;">💉</div>
+          <h3>Diabetes Care</h3>
+          <p>Comprehensive diabetes management programme addressing blood sugar control, diet, and complication prevention.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>Blood glucose management</li><li>HbA1c monitoring</li><li>Diet & lifestyle coaching</li><li>Complication screening</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Consultation</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#fce7f3;color:#be185d;font-size:32px;">👩‍⚕️</div>
+          <h3>Women's Health</h3>
+          <p>Complete gynecological and obstetric care for women at every stage of life, delivered with privacy and compassion.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>Antenatal check-ups</li><li>Fertility consultations</li><li>PCOS/PCOD management</li><li>Menopause care</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Consultation</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#e0f2fe;color:#0284c7;font-size:32px;">🔬</div>
+          <h3>Diagnostics Lab</h3>
+          <p>NABL-certified in-house laboratory with digital results, rapid processing, and home sample collection services.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>200+ blood & urine tests</li><li>Digital X-ray & ultrasound</li><li>ECG & spirometry</li><li>Home sample collection</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Lab Test</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#d1fae5;color:#059669;font-size:32px;">🧠</div>
+          <h3>Neurology</h3>
+          <p>Expert diagnosis and management of neurological conditions including headaches, epilepsy, stroke, and neuropathy.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>Migraine & headache treatment</li><li>Epilepsy management</li><li>Stroke care & rehab</li><li>Memory disorders</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Consultation</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#fef9c3;color:#ca8a04;font-size:32px;">🦴</div>
+          <h3>Orthopedics</h3>
+          <p>Comprehensive bone, joint, and muscle care for sports injuries, arthritis, back pain, and fracture management.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>Joint pain management</li><li>Sports injury treatment</li><li>Physiotherapy referrals</li><li>Arthritis care</li>
+          </ul>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="showPage('appointment')">Book Consultation</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" style="background:#e0e7ff;color:#4f46e5;font-size:32px;">🚑</div>
+          <h3>Emergency Care</h3>
+          <p>24/7 emergency services with rapid response team, resuscitation equipment, and direct hospital coordination.</p>
+          <ul style="margin-top:14px;font-size:14px;color:var(--gray-600);padding-left:18px;line-height:1.8;">
+            <li>24/7 availability</li><li>Stabilisation & first aid</li><li>Ambulance coordination</li><li>Hospital transfer support</li>
+          </ul>
+          <a href="tel:+919043916280" class="btn btn-red btn-sm" style="margin-top:16px;">🚨 Emergency Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== DOCTORS PAGE ===== -->
+<div id="page-doctors" class="hidden">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home → Doctors</div>
+      <h1>Our Expert Doctors</h1>
+      <p>Meet our team of 25+ experienced specialists dedicated to your health and wellbeing.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3 gap-6">
+        <div class="doctor-card">
+          <div class="doctor-img-wrap">👨‍⚕️<div class="doctor-avail">Available Today</div></div>
+          <div class="doctor-info">
+            <div class="stars">★★★★★ (4.9/5)</div>
+            <div class="doctor-name">Dr. Rajesh Kumar</div>
+            <div class="doctor-spec">Chief Cardiologist</div>
+            <div class="doctor-exp">MBBS, MD, DM Cardiology · 18 Years Experience</div>
+            <p style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">Specialises in interventional cardiology, heart failure, and preventive cardiology. Available Mon–Fri, 10AM–4PM.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-img-wrap">👩‍⚕️<div class="doctor-avail">Available Today</div></div>
+          <div class="doctor-info">
+            <div class="stars">★★★★★ (4.9/5)</div>
+            <div class="doctor-name">Dr. Priya Sharma</div>
+            <div class="doctor-spec">Senior Gynecologist</div>
+            <div class="doctor-exp">MBBS, MS OBG · 14 Years Experience</div>
+            <p style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">Expert in obstetrics, high-risk pregnancy, laparoscopic surgery, and reproductive medicine. Available Mon–Sat.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-img-wrap">👨‍⚕️<div class="doctor-avail">Available Today</div></div>
+          <div class="doctor-info">
+            <div class="stars">★★★★☆ (4.7/5)</div>
+            <div class="doctor-name">Dr. Suresh Menon</div>
+            <div class="doctor-spec">Diabetologist & Endocrinologist</div>
+            <div class="doctor-exp">MBBS, MD Medicine · 12 Years Experience</div>
+            <p style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">Pioneer in diabetes reversal programmes and thyroid disorder management. Available Tue, Thu, Sat.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-img-wrap">👩‍⚕️<div class="doctor-avail" style="background:#f59e0b;">Tomorrow</div></div>
+          <div class="doctor-info">
+            <div class="stars">★★★★★ (5.0/5)</div>
+            <div class="doctor-name">Dr. Ananya Patel</div>
+            <div class="doctor-spec">Senior Pediatrician</div>
+            <div class="doctor-exp">MBBS, DCH, DNB Pediatrics · 10 Years Experience</div>
+            <p style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">Specialises in neonatal care, childhood infections, and developmental disorders. Available Mon, Wed, Fri.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-img-wrap">👨‍⚕️<div class="doctor-avail">Available Today</div></div>
+          <div class="doctor-info">
+            <div class="stars">★★★★★ (4.8/5)</div>
+            <div class="doctor-name">Dr. Vinod Nair</div>
+            <div class="doctor-spec">Neurologist</div>
+            <div class="doctor-exp">MBBS, MD, DM Neurology · 16 Years Experience</div>
+            <p style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">Expert in stroke management, epilepsy, migraine, and neurodegenerative diseases. Available Mon–Fri.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Appointment</button>
+          </div>
+        </div>
+        <div class="doctor-card">
+          <div class="doctor-img-wrap">👩‍⚕️<div class="doctor-avail">Available Today</div></div>
+          <div class="doctor-info">
+            <div class="stars">★★★★☆ (4.6/5)</div>
+            <div class="doctor-name">Dr. Meera Chandran</div>
+            <div class="doctor-spec">General Physician</div>
+            <div class="doctor-exp">MBBS, MD General Medicine · 8 Years Experience</div>
+            <p style="font-size:13px;color:var(--gray-600);margin-bottom:14px;">Comprehensive primary care, preventive medicine, and chronic disease management specialist. Available all days.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showPage('appointment')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== APPOINTMENT PAGE ===== -->
+<div id="page-appointment" class="hidden">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home → Book Appointment</div>
+      <h1>Book an Appointment</h1>
+      <p>Schedule your consultation in minutes. We'll confirm your booking and send a reminder.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-xl);padding:40px;box-shadow:var(--shadow-lg);">
+        <h2 style="font-size:22px;font-weight:700;color:var(--dark-blue);margin-bottom:28px;">Patient Appointment Form</h2>
+        <div class="grid grid-2 gap-4">
+          <div class="form-group">
+            <label class="form-label">First Name *</label>
+            <input type="text" class="form-input" id="apptFirst" placeholder="Enter first name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name *</label>
+            <input type="text" class="form-input" id="apptLast" placeholder="Enter last name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date of Birth *</label>
+            <input type="date" class="form-input" id="apptDOB">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gender *</label>
+            <select class="form-select" id="apptGender">
+              <option value="">Select gender</option>
+              <option>Male</option><option>Female</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mobile Number *</label>
+            <input type="tel" class="form-input" id="apptPhone" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" id="apptEmail" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Select Doctor / Speciality *</label>
+            <select class="form-select" id="apptDoctor">
+              <option value="">Choose doctor...</option>
+              <option>Dr. Rajesh Kumar – Cardiology</option>
+              <option>Dr. Priya Sharma – Women's Health</option>
+              <option>Dr. Suresh Menon – Diabetes Care</option>
+              <option>Dr. Ananya Patel – Pediatrics</option>
+              <option>Dr. Vinod Nair – Neurology</option>
+              <option>Dr. Meera Chandran – General Physician</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Appointment Type *</label>
+            <select class="form-select" id="apptType">
+              <option value="">Select type</option>
+              <option>In-Person Consultation</option>
+              <option>Online Consultation</option>
+              <option>Follow-up Visit</option>
+              <option>Lab Test Booking</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Date *</label>
+            <input type="date" class="form-input" id="apptDate">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Time *</label>
+            <select class="form-select" id="apptTime">
+              <option value="">Select time slot</option>
+              <option>8:00 AM – 8:30 AM</option>
+              <option>8:30 AM – 9:00 AM</option>
+              <option>9:00 AM – 9:30 AM</option>
+              <option>10:00 AM – 10:30 AM</option>
+              <option>11:00 AM – 11:30 AM</option>
+              <option>2:00 PM – 2:30 PM</option>
+              <option>3:00 PM – 3:30 PM</option>
+              <option>4:00 PM – 4:30 PM</option>
+              <option>5:00 PM – 5:30 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:8px;">
+          <label class="form-label">Symptoms / Reason for Visit</label>
+          <textarea class="form-input" rows="3" id="apptSymptoms" placeholder="Briefly describe your symptoms or reason for visit..." style="resize:vertical;"></textarea>
+        </div>
+        <div style="background:var(--teal-light);border-radius:var(--radius);padding:14px;margin-bottom:20px;font-size:13px;color:#1a6b55;display:flex;gap:10px;">
+          <span>🔒</span>
+          <span>Your data is encrypted and stored securely. We follow strict privacy practices in line with HIPAA/GDPR principles. Your information will never be shared with third parties.</span>
+        </div>
+        <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" onclick="submitFullAppointment()">
+          📅 Confirm Appointment
+        </button>
+        <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--gray-600);">
+          Or call us: <a href="tel:+919043916280" style="color:var(--teal);font-weight:600;">+91 90439 16280</a> · 
+          <a href="https://wa.me/919043916280" target="_blank" style="color:#25d366;font-weight:600;">WhatsApp</a>
+        </p>
+      </div>
+      <div id="apptSuccess" class="hidden" style="background:#d1fae5;border:2px solid #6ee7b7;border-radius:var(--radius-xl);padding:40px;text-align:center;margin-top:24px;">
+        <div style="font-size:60px;margin-bottom:16px;">✅</div>
+        <h3 style="color:#065f46;font-size:22px;font-weight:700;margin-bottom:8px;">Appointment Confirmed!</h3>
+        <p style="color:#047857;margin-bottom:16px;" id="apptConfirmMsg">Your appointment has been booked successfully. A confirmation will be sent to your mobile/email.</p>
+        <p style="font-size:13px;color:#059669;">Need to reschedule? Call: <a href="tel:+919043916280" style="color:#047857;font-weight:600;">+91 90439 16280</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PATIENT PORTAL ===== -->
+<div id="page-portal" class="hidden">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home → Patient Portal</div>
+      <h1>Patient Portal</h1>
+      <p>Access your health records, appointments, and prescriptions securely.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container" style="max-width:900px;">
+      <div id="portal-login-view">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+          <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow);">
+            <h2 style="font-size:22px;font-weight:700;color:var(--dark-blue);margin-bottom:6px;">Patient Login</h2>
+            <p style="color:var(--gray-600);font-size:14px;margin-bottom:24px;">Access your health dashboard</p>
+            <div class="form-group"><label class="form-label">Mobile Number / Email</label><input type="text" class="form-input" placeholder="+91 XXXXX or email" id="loginUser"></div>
+            <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" placeholder="Enter password" id="loginPass"></div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;" onclick="doPortalLogin()">Login to Portal →</button>
+            <p style="text-align:center;margin-top:16px;font-size:14px;color:var(--gray-600);">New patient? <span style="color:var(--teal);cursor:pointer;font-weight:600;" onclick="togglePortalReg()">Register here</span></p>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow);" id="portal-reg-form">
+            <h2 style="font-size:22px;font-weight:700;color:var(--dark-blue);margin-bottom:6px;">New Patient Registration</h2>
+            <p style="color:var(--gray-600);font-size:14px;margin-bottom:24px;">Create your patient account</p>
+            <div class="form-group"><label class="form-label">Full Name *</label><input type="text" class="form-input" placeholder="Your full name" id="regName"></div>
+            <div class="form-group"><label class="form-label">Mobile Number *</label><input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" id="regPhone"></div>
+            <div class="form-group"><label class="form-label">Email Address *</label><input type="email" class="form-input" placeholder="your@email.com" id="regEmail"></div>
+            <div class="form-group"><label class="form-label">Date of Birth *</label><input type="date" class="form-input" id="regDOB"></div>
+            <div class="form-group"><label class="form-label">Create Password *</label><input type="password" class="form-input" placeholder="Min 8 characters" id="regPass"></div>
+            <button class="btn btn-blue" style="width:100%;justify-content:center;margin-top:8px;" onclick="doPortalRegister()">Create Account →</button>
+          </div>
+        </div>
+      </div>
+      <div id="portal-dashboard-view" class="hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:14px;">
+          <div>
+            <h2 style="font-size:24px;font-weight:700;color:var(--dark-blue);" id="portal-welcome">Welcome back!</h2>
+            <p style="color:var(--gray-600);">Patient ID: MED-2024-0042</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="doPortalLogout()">Logout</button>
+        </div>
+        <div class="portal-tabs">
+          <button class="portal-tab active" onclick="switchPortalTab('appts',this)">📅 My Appointments</button>
+          <button class="portal-tab" onclick="switchPortalTab('prescriptions',this)">💊 Prescriptions</button>
+          <button class="portal-tab" onclick="switchPortalTab('history',this)">📋 Medical History</button>
+          <button class="portal-tab" onclick="switchPortalTab('profile',this)">👤 My Profile</button>
+        </div>
+        <div id="portal-appts" class="portal-content active">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Doctor</th><th>Department</th><th>Type</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>14 Jan 2025</td><td>Dr. Rajesh Kumar</td><td>Cardiology</td><td>In-Person</td><td><span class="badge badge-green">Completed</span></td><td><button class="btn btn-sm btn-outline" onclick="showToast('Prescription downloaded!','success')">⬇ Report</button></td></tr>
+                <tr><td>28 Jan 2025</td><td>Dr. Suresh Menon</td><td>Diabetes Care</td><td>Online</td><td><span class="badge badge-yellow">Upcoming</span></td><td><button class="btn btn-sm btn-outline">📋 Details</button></td></tr>
+                <tr><td>05 Feb 2025</td><td>Dr. Ananya Patel</td><td>Pediatrics</td><td>In-Person</td><td><span class="badge badge-blue">Confirmed</span></td><td><button class="btn btn-sm btn-outline">🔔 Remind</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:20px;"><button class="btn btn-primary" onclick="showPage('appointment')">+ Book New Appointment</button></div>
+        </div>
+        <div id="portal-prescriptions" class="portal-content">
+          <div class="grid grid-2 gap-4">
+            <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                <div><strong style="font-size:15px;">Prescription #RX-001</strong><div style="font-size:13px;color:var(--gray-600);">Dr. Rajesh Kumar · 14 Jan 2025</div></div>
+                <span class="badge badge-green">Active</span>
+              </div>
+              <p style="font-size:14px;color:var(--gray-600);margin-bottom:14px;">Amlodipine 5mg, Aspirin 75mg, Atorvastatin 20mg</p>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Downloading prescription PDF...','success')">⬇ Download PDF</button>
+            </div>
+            <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                <div><strong style="font-size:15px;">Prescription #RX-002</strong><div style="font-size:13px;color:var(--gray-600);">Dr. Suresh Menon · 20 Dec 2024</div></div>
+                <span class="badge badge-yellow">Refill Due</span>
+              </div>
+              <p style="font-size:14px;color:var(--gray-600);margin-bottom:14px;">Metformin 500mg, Glipizide 5mg, Vitamin D3 60K</p>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Downloading prescription PDF...','success')">⬇ Download PDF</button>
+            </div>
+          </div>
+        </div>
+        <div id="portal-history" class="portal-content">
+          <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px;">
+            <h3 style="font-size:18px;font-weight:700;color:var(--dark-blue);margin-bottom:20px;">Medical History Summary</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div><p style="font-size:12px;color:var(--gray-600);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Blood Group</p><p style="font-size:16px;font-weight:600;">B+</p></div>
+              <div><p style="font-size:12px;color:var(--gray-600);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Allergies</p><p style="font-size:16px;font-weight:600;">Penicillin</p></div>
+              <div><p style="font-size:12px;color:var(--gray-600);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Chronic Conditions</p><p style="font-size:16px;font-weight:600;">Type 2 Diabetes, Hypertension</p></div>
+              <div><p style="font-size:12px;color:var(--gray-600);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Last Visit</p><p style="font-size:16px;font-weight:600;">14 Jan 2025</p></div>
+            </div>
+          </div>
+        </div>
+        <div id="portal-profile" class="portal-content">
+          <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px;">
+            <h3 style="font-size:18px;font-weight:700;color:var(--dark-blue);margin-bottom:20px;">My Profile</h3>
+            <div class="grid grid-2 gap-4">
+              <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" value="Raman Iyer" readonly></div>
+              <div class="form-group"><label class="form-label">Patient ID</label><input class="form-input" value="MED-2024-0042" readonly></div>
+              <div class="form-group"><label class="form-label">Mobile</label><input class="form-input" value="+91 90439 16280" readonly></div>
+              <div class="form-group"><label class="form-label">Email</label><input class="form-input" value="multispecialtymedcare@gmail.com" readonly></div>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="showToast('Profile update feature coming soon!','success')">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ADMIN DASHBOARD ===== -->
+<div id="page-admin" class="hidden">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home → Admin Dashboard</div>
+      <h1>Admin Dashboard</h1>
+      <p>Manage appointments, doctors, patients, and clinic operations.</p>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:14px;">
+        <div>
+          <h2 style="font-size:22px;font-weight:700;color:var(--dark-blue);">Admin Panel · MedCare</h2>
+          <p style="color:var(--gray-600);font-size:14px;">Today: <span id="adminDate"></span></p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-primary btn-sm" onclick="showToast('Export feature ready','success')">⬇ Export Data</button>
+          <button class="btn btn-blue btn-sm" onclick="openModal('addDoctorModal')">+ Add Doctor</button>
+        </div>
+      </div>
+      <div class="admin-grid">
+        <div class="admin-stat"><div style="font-size:28px;margin-bottom:8px;">📅</div><div class="admin-stat-val" id="totalAppts">127</div><div class="admin-stat-label">Total Appointments</div><div class="admin-stat-trend">↑ +12% this month</div></div>
+        <div class="admin-stat"><div style="font-size:28px;margin-bottom:8px;">👥</div><div class="admin-stat-val">48</div><div class="admin-stat-label">New Patients (Month)</div><div class="admin-stat-trend">↑ +8% this month</div></div>
+        <div class="admin-stat"><div style="font-size:28px;margin-bottom:8px;">👨‍⚕️</div><div class="admin-stat-val">25</div><div class="admin-stat-label">Active Doctors</div><div class="admin-stat-trend">All departments covered</div></div>
+        <div class="admin-stat"><div style="font-size:28px;margin-bottom:8px;">⭐</div><div class="admin-stat-val">4.9</div><div class="admin-stat-label">Average Rating</div><div class="admin-stat-trend">↑ +0.2 this month</div></div>
+      </div>
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchAdminTab('appointments',this)">📅 Appointments</button>
+        <button class="tab-btn" onclick="switchAdminTab('doctors',this)">👨‍⚕️ Doctors</button>
+        <button class="tab-btn" onclick="switchAdminTab('patients',this)">👥 Patients</button>
+      </div>
+      <div id="admin-appointments">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date & Time</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="adminApptTable">
+              <tr><td>#A-001</td><td>Raman Iyer</td><td>Dr. Rajesh Kumar</td><td>14 Jan, 10:00 AM</td><td>In-Person</td><td><span class="badge badge-yellow">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="approveAppt(this)">Approve</button></td></tr>
+              <tr><td>#A-002</td><td>Sunitha K.</td><td>Dr. Ananya Patel</td><td>14 Jan, 11:30 AM</td><td>In-Person</td><td><span class="badge badge-green">Confirmed</span></td><td><button class="btn btn-sm btn-outline">View</button></td></tr>
+              <tr><td>#A-003</td><td>Arjun Mehta</td><td>Dr. Suresh Menon</td><td>15 Jan, 2:00 PM</td><td>Online</td><td><span class="badge badge-blue">Completed</span></td><td><button class="btn btn-sm btn-outline">Prescription</button></td></tr>
+              <tr><td>#A-004</td><td>Kavitha R.</td><td>Dr. Priya Sharma</td><td>16 Jan, 9:00 AM</td><td>In-Person</td><td><span class="badge badge-yellow">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="approveAppt(this)">Approve</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="admin-doctors" class="hidden">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Speciality</th><th>Experience</th><th>Today's Slots</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>Dr. Rajesh Kumar</td><td>Cardiology</td><td>18 years</td><td>8/10 Booked</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+              <tr><td>Dr. Priya Sharma</td><td>Women's Health</td><td>14 years</td><td>6/10 Booked</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+              <tr><td>Dr. Suresh Menon</td><td>Diabetes Care</td><td>12 years</td><td>Not Available</td><td><span class="badge badge-yellow">On Leave</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+              <tr><td>Dr. Ananya Patel</td><td>Pediatrics</td><td>10 years</td><td>7/10 Booked</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-sm btn-outline">Edit</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="admin-patients" class="hidden">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Patient ID</th><th>Name</th><th>Mobile</th><th>Last Visit</th><th>Appointments</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>MED-001</td><td>Raman Iyer</td><td>+91 98765 43210</td><td>14 Jan 2025</td><td>3</td><td><button class="btn btn-sm btn-outline">View</button></td></tr>
+              <tr><td>MED-002</td><td>Sunitha K.</td><td>+91 87654 32109</td><td>10 Jan 2025</td><td>5</td><td><button class="btn btn-sm btn-outline">View</button></td></tr>
+              <tr><td>MED-003</td><td>Arjun Mehta</td><td>+91 76543 21098</td><td>05 Jan 2025</td><td>2</td><td><button class="btn btn-sm btn-outline">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer id="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" onclick="showPage('home')">
+          <img src="/mnt/user-data/uploads/466a95e70b96ccfce46dd1d61a12ccb9.jpg" alt="MedCare" style="width:36px;height:36px;object-fit:contain;border-radius:8px;" onerror="this.style.display='none'">
+          <div>
+            <div class="logo-text" style="color:#fff;">MedCare</div>
+            <div class="logo-sub">Multi-Speciality Clinic</div>
+          </div>
+        </a>
+        <p>Delivering compassionate, expert healthcare across 12 specialities. Your health is our priority.</p>
+        <p style="margin-top:10px;font-size:13px;">📍 Chennai, Tamil Nadu, India<br>📞 <a href="tel:+919043916280" style="color:var(--teal);text-decoration:none;">+91 90439 16280</a><br>📧 <a href="mailto:multispecialtymedcare@gmail.com" style="color:var(--teal);text-decoration:none;">multispecialtymedcare@gmail.com</a></p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">in</a>
+          <a href="https://wa.me/919043916280" target="_blank" class="social-btn">W</a>
+          <a href="mailto:multispecialtymedcare@gmail.com" class="social-btn">@</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Quick Links</div>
+        <a class="footer-link" href="#" onclick="showPage('home')">🏠 Home</a>
+        <a class="footer-link" href="#" onclick="showPage('about')">ℹ️ About Us</a>
+        <a class="footer-link" href="#" onclick="showPage('services')">🏥 Services</a>
+        <a class="footer-link" href="#" onclick="showPage('doctors')">👨‍⚕️ Our Doctors</a>
+        <a class="footer-link" href="#" onclick="showPage('appointment')">📅 Book Appointment</a>
+        <a class="footer-link" href="#" onclick="showPage('portal')">👤 Patient Portal</a>
+      </div>
+      <div>
+        <div class="footer-title">Services</div>
+        <a class="footer-link" href="#" onclick="showPage('services')">General Physician</a>
+        <a class="footer-link" href="#" onclick="showPage('services')">Cardiology</a>
+        <a class="footer-link" href="#" onclick="showPage('services')">Pediatrics</a>
+        <a class="footer-link" href="#" onclick="showPage('services')">Diabetes Care</a>
+        <a class="footer-link" href="#" onclick="showPage('services')">Women's Health</a>
+        <a class="footer-link" href="#" onclick="showPage('services')">Diagnostics Lab</a>
+        <a class="footer-link" href="#" onclick="showPage('services')">Emergency Care</a>
+      </div>
+      <div>
+        <div class="footer-title">Contact & Hours</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:10px;">🕐 <strong style="color:#fff;">Mon–Sat:</strong> 8AM–9PM</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:10px;">🕐 <strong style="color:#fff;">Sunday:</strong> 9AM–1PM</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:16px;">🚨 <strong style="color:#fff;">Emergency:</strong> 24/7</p>
+        <a href="tel:+919043916280" class="btn btn-red btn-sm" style="margin-bottom:10px;display:inline-flex;">🚨 Emergency Call</a><br>
+        <a href="https://wa.me/919043916280" target="_blank" class="btn btn-sm" style="background:#25d366;color:#fff;display:inline-flex;margin-top:8px;">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2025 MedCare Multi-Speciality Clinic. All rights reserved. | Chennai, Tamil Nadu, India | Designed with ❤️ for better healthcare</p>
+      <p style="margin-top:6px;">🔒 NABH Accredited · NABL Certified · HIPAA/GDPR Privacy Compliant</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ====== AI CHATBOT ====== -->
+<div class="emergency-banner" id="chatEmergencyBanner">
+  🚨 EMERGENCY DETECTED! Please call 108 or <a href="tel:+919043916280" style="color:#991b1b;">+91 90439 16280</a> IMMEDIATELY!
+</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-header-info">
+      <h4>MedAssist AI</h4>
+      <p>🟢 Online · MedCare Virtual Assistant</p>
+    </div>
+    <button class="chat-header-close" onclick="closeChat()">✕</button>
+  </div>
+  <div class="chat-disclaimer">
+    ⚠️ <span>This AI does not replace a doctor. For emergencies, call <strong>108</strong> or <strong>+91 90439 16280</strong> immediately.</span>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">
+      <div class="chat-bubble">👋 Hello! I'm <strong>MedAssist AI</strong>, your virtual health assistant at MedCare.<br><br>I can help you with:<br>• Symptom checking & guidance<br>• Booking appointments<br>• Clinic information<br>• Medicine queries<br><br>How can I help you today? <br><br><em>(நான் தமிழிலும் பேசலாம்! / I speak Tamil too!)</em></div>
+      <div class="chat-time">Just now</div>
+    </div>
+  </div>
+  <div class="chat-quick" id="chatQuick">
+    <button class="chat-quick-btn" onclick="sendQuick('I have a fever and headache')">🤒 Fever & Headache</button>
+    <button class="chat-quick-btn" onclick="sendQuick('I want to book an appointment')">📅 Book Appointment</button>
+    <button class="chat-quick-btn" onclick="sendQuick('Chest pain')">❤️ Chest Pain</button>
+    <button class="chat-quick-btn" onclick="sendQuick('What are your timings?')">🕐 Timings</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Type your symptoms or question..." onkeypress="handleChatKey(event)">
+    <button class="chat-send" onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
+<button class="chat-fab" id="chatFab" onclick="openChat()" title="MedAssist AI">🤖</button>
+
+<!-- MODAL: Add Doctor -->
+<div class="modal-overlay" id="addDoctorModal" onclick="closeModal('addDoctorModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">Add New Doctor</div>
+      <button class="modal-close" onclick="closeModal('addDoctorModal')">✕</button>
+    </div>
+    <div class="form-group"><label class="form-label">Full Name *</label><input type="text" class="form-input" placeholder="Dr. Full Name"></div>
+    <div class="form-group"><label class="form-label">Speciality *</label><select class="form-select"><option>Cardiology</option><option>Pediatrics</option><option>Diabetes Care</option><option>Women's Health</option><option>General Physician</option><option>Neurology</option></select></div>
+    <div class="form-group"><label class="form-label">Qualification *</label><input type="text" class="form-input" placeholder="MBBS, MD, etc."></div>
+    <div class="form-group"><label class="form-label">Experience (years)</label><input type="number" class="form-input" placeholder="10"></div>
+    <div class="form-group"><label class="form-label">Available Days</label><input type="text" class="form-input" placeholder="Mon, Wed, Fri"></div>
+    <div class="form-group"><label class="form-label">Consultation Hours</label><input type="text" class="form-input" placeholder="9AM - 5PM"></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="closeModal('addDoctorModal');showToast('Doctor added successfully!','success')">Add Doctor</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Success</div>
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ===== DARK MODE =====
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  document.getElementById('darkIcon').textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+}
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+  document.getElementById('mobMenu').classList.toggle('open');
+}
+
+// ===== PAGE ROUTER =====
+const pages = ['home','about','services','doctors','appointment','portal','admin'];
+function showPage(name) {
+  pages.forEach(p => {
+    const el = document.getElementById('page-'+p);
+    if(el) el.classList.add('hidden');
+  });
+  const target = document.getElementById('page-'+name);
+  if(target) target.classList.remove('hidden');
+  document.getElementById('site-footer').classList.toggle('hidden', name === 'admin');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  window.scrollTo({top:0,behavior:'smooth'});
+  // update admin date
+  if(name==='admin') document.getElementById('adminDate').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+}
+
+// ===== SCROLL EFFECTS =====
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (scrolled/total*100)+'%';
+  const scrollTop = document.getElementById('scroll-top');
+  scrolled > 400 ? scrollTop.classList.add('show') : scrollTop.classList.remove('show');
+  // Fade in animations
+  document.querySelectorAll('.fade-up').forEach(el => {
+    if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
+  });
+});
+// Initial trigger
+setTimeout(() => document.querySelectorAll('.fade-up').forEach(el => {
+  if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
+}), 100);
+
+// ===== HERO FORM =====
+function submitCtaBooking() {
+  const name = document.getElementById('ctaName').value;
+  const phone = document.getElementById('ctaPhone').value;
+  if(!name||!phone) { showToast('Please fill required fields','error'); return; }
+  showToast('✅ Request sent! Our team will contact you within 30 minutes.','success');
+  saveToStorage({name,phone,dept:document.getElementById('ctaDept').value,date:document.getElementById('ctaDate').value});
+}
+function submitFullAppointment() {
+  const f = document.getElementById('apptFirst').value;
+  const l = document.getElementById('apptLast').value;
+  const ph = document.getElementById('apptPhone').value;
+  const doc = document.getElementById('apptDoctor').value;
+  const date = document.getElementById('apptDate').value;
+  const time = document.getElementById('apptTime').value;
+  if(!f||!l||!ph||!doc||!date||!time) { showToast('Please fill all required fields','error'); return; }
+  const apptData = {name:`${f} ${l}`,phone:ph,email:document.getElementById('apptEmail').value,doctor:doc,date,time,type:document.getElementById('apptType').value,symptoms:document.getElementById('apptSymptoms').value};
+  saveToStorage(apptData);
+  document.getElementById('apptConfirmMsg').textContent = `Appointment with ${doc} on ${date} at ${time} confirmed! Confirmation sent to ${ph}.`;
+  document.getElementById('apptSuccess').classList.remove('hidden');
+  showToast('🎉 Appointment booked successfully!','success');
+  sendWhatsApp(apptData);
+}
+
+// ===== SUPABASE / LOCAL STORAGE SIMULATION =====
+const appointments = [];
+function saveToStorage(data) {
+  data.id = 'MED-' + Date.now();
+  data.createdAt = new Date().toISOString();
+  data.status = 'pending';
+  appointments.push(data);
+  const existing = JSON.parse(localStorage.getItem('medcare_appointments')||'[]');
+  existing.push(data);
+  try { localStorage.setItem('medcare_appointments', JSON.stringify(existing)); } catch(e){}
+  console.log('Appointment saved:', data);
+  // Update admin count
+  const el = document.getElementById('totalAppts');
+  if(el) el.textContent = parseInt(el.textContent)+1;
+  addToAdminTable(data);
+}
+function addToAdminTable(data) {
+  const tbody = document.getElementById('adminApptTable');
+  if(!tbody) return;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${data.id}</td><td>${data.name||'Patient'}</td><td>${data.doctor||data.speciality||'TBD'}</td><td>${data.date||'TBD'} ${data.time||''}</td><td>${data.type||'In-Person'}</td><td><span class="badge badge-yellow">Pending</span></td><td><button class="btn btn-sm btn-primary" onclick="approveAppt(this)">Approve</button></td>`;
+  tbody.prepend(tr);
+}
+function approveAppt(btn) {
+  const td = btn.closest('tr').querySelector('td:nth-child(6)');
+  td.innerHTML = '<span class="badge badge-green">Confirmed</span>';
+  btn.textContent = '✓ Approved'; btn.disabled = true; btn.style.opacity='0.5';
+  showToast('Appointment approved & confirmation sent!','success');
+}
+
+// ===== WHATSAPP =====
+function sendWhatsApp(data) {
+  const msg = encodeURIComponent(`🏥 *MedCare Appointment Confirmed!*\n\nPatient: ${data.name}\nDoctor: ${data.doctor}\nDate: ${data.date}\nTime: ${data.time}\nType: ${data.type}\n\nFor queries: +91 90439 16280\n📧 multispecialtymedcare@gmail.com`);
+  console.log('WhatsApp message would be sent:', decodeURIComponent(msg));
+}
+
+// ===== PATIENT PORTAL =====
+function doPortalLogin() {
+  const u = document.getElementById('loginUser').value;
+  const p = document.getElementById('loginPass').value;
+  if(!u||!p) { showToast('Please enter credentials','error'); return; }
+  document.getElementById('portal-login-view').classList.add('hidden');
+  document.getElementById('portal-dashboard-view').classList.remove('hidden');
+  document.getElementById('portal-welcome').textContent = `Welcome back, Raman! 👋`;
+  showToast('Login successful!','success');
+}
+function doPortalRegister() {
+  const n = document.getElementById('regName').value;
+  const ph = document.getElementById('regPhone').value;
+  if(!n||!ph) { showToast('Please fill required fields','error'); return; }
+  showToast('Account created! Please login.','success');
+}
+function doPortalLogout() {
+  document.getElementById('portal-login-view').classList.remove('hidden');
+  document.getElementById('portal-dashboard-view').classList.add('hidden');
+}
+function togglePortalReg() {}
+function switchPortalTab(tab, btn) {
+  document.querySelectorAll('.portal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.portal-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('portal-'+tab).classList.add('active');
+}
+
+// ===== ADMIN TABS =====
+function switchAdminTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  ['appointments','doctors','patients'].forEach(t => document.getElementById('admin-'+t).classList.add('hidden'));
+  btn.classList.add('active');
+  document.getElementById('admin-'+tab).classList.remove('hidden');
+}
+
+// ===== MODAL =====
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ===== TOAST =====
+function showToast(msg, type='success') {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show ' + type;
+  setTimeout(() => toast.className = 'toast', 3500);
+}
+
+// ===== AI CHATBOT =====
+let chatOpen = false;
+function openChat() {
+  chatOpen = true;
+  document.getElementById('chatWindow').classList.add('open');
+  document.getElementById('chatFab').style.display = 'none';
+}
+function closeChat() {
+  chatOpen = false;
+  document.getElementById('chatWindow').classList.remove('open');
+  document.getElementById('chatFab').style.display = 'flex';
+}
+
+const EMERGENCY_KEYWORDS = ['chest pain','heart attack','stroke','can\'t breathe','breathing problem','unconscious','seizure','suicide','poisoning','severe bleeding','not breathing','choking'];
+const chatResponses = {
+  'fever': 'For fever, I recommend:\n• Rest and stay hydrated\n• Take Paracetamol if >38.5°C\n• Monitor temperature every 4 hours\n• If fever persists >3 days, see a doctor\n\n→ I\'d recommend booking with our **General Physician**.',
+  'headache': 'Headaches can have many causes:\n• Tension headache (most common)\n• Dehydration — drink water first\n• Migraine (with nausea/light sensitivity)\n• High BP (if severe/sudden)\n\n→ For recurring headaches, consult our **Neurologist**.',
+  'chest pain': '🚨 **EMERGENCY WARNING** 🚨\n\nChest pain can indicate a heart attack. Please:\n• Call **108** immediately\n• Or call our emergency line: **+91 90439 16280**\n• Do NOT drive yourself\n• Sit quietly and stay calm',
+  'diabetes': 'For diabetes management:\n• Check blood sugar regularly\n• Follow a low-carb diet\n• Take medications as prescribed\n• Exercise 30 min daily\n\n→ Book with our expert **Diabetologist Dr. Suresh Menon**.',
+  'appointment': 'I\'d be happy to help you book an appointment! 📅\n\nPlease select your speciality:\n• Cardiology\n• Pediatrics\n• Diabetes Care\n• Women\'s Health\n• General Physician\n\nOr I can redirect you to our booking page →',
+  'timing': 'Our clinic timings:\n🕐 **Mon–Sat:** 8:00 AM – 9:00 PM\n🕐 **Sunday:** 9:00 AM – 1:00 PM\n🚨 **Emergency:** 24/7\n\n📞 Call: +91 90439 16280',
+  'location': '📍 MedCare Multi-Speciality Clinic\nChennai, Tamil Nadu, India\n\n📞 +91 90439 16280\n📧 multispecialtymedcare@gmail.com\n\nWe\'re open 7 days a week!',
+  'default': 'Thank you for sharing that. Based on your symptoms, I recommend consulting one of our specialist doctors for a proper diagnosis.\n\nWould you like to:\n1. 📅 Book an appointment\n2. 🔍 Describe more symptoms\n3. 📞 Call us: +91 90439 16280'
+};
+
+function getAIResponse(msg) {
+  const lower = msg.toLowerCase();
+  if(EMERGENCY_KEYWORDS.some(k => lower.includes(k))) {
+    document.getElementById('chatEmergencyBanner').classList.add('show');
+    return chatResponses['chest pain'];
+  }
+  if(lower.includes('fever') || lower.includes('temperature')) return chatResponses['fever'];
+  if(lower.includes('head') || lower.includes('migraine')) return chatResponses['headache'];
+  if(lower.includes('diabetes') || lower.includes('sugar') || lower.includes('hba1c')) return chatResponses['diabetes'];
+  if(lower.includes('book') || lower.includes('appointment') || lower.includes('consult')) return chatResponses['appointment'];
+  if(lower.includes('time') || lower.includes('hour') || lower.includes('open') || lower.includes('timing')) return chatResponses['timing'];
+  if(lower.includes('location') || lower.includes('address') || lower.includes('where')) return chatResponses['location'];
+  if(lower.includes('hello') || lower.includes('hi') || lower.includes('vanakkam')) return '👋 Vanakkam! Welcome to MedCare.\n\nHow can I assist you today? You can describe your symptoms, ask about our services, or book an appointment.';
+  if(lower.includes('tamil') || lower.includes('தமிழ்')) return 'நலம்! நான் தமிழிலும் உதவ தயார். உங்கள் உடல் நலம் பற்றி சொல்லுங்கள். (Yes, I can help in Tamil! Please describe your health concern.)';
+  return chatResponses['default'];
+}
+
+function addChatMessage(text, type='bot') {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + type;
+  const now = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  div.innerHTML = `<div class="chat-bubble">${text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/→/g,'<span style="color:var(--teal)">→</span>')}</div><div class="chat-time">${now}</div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.id = 'typingIndicator';
+  div.className = 'chat-msg bot';
+  div.innerHTML = '<div class="chat-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+function removeTyping() {
+  const t = document.getElementById('typingIndicator');
+  if(t) t.remove();
+}
+
+function sendChatMessage() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  addChatMessage(msg, 'user');
+  input.value = '';
+  document.getElementById('chatQuick').style.display = 'none';
+  showTyping();
+  setTimeout(() => {
+    removeTyping();
+    const response = getAIResponse(msg);
+    addChatMessage(response, 'bot');
+    if(msg.toLowerCase().includes('appointment') || msg.toLowerCase().includes('book')) {
+      setTimeout(() => {
+        const quickDiv = document.createElement('div');
+        quickDiv.style.padding = '8px 16px';
+        quickDiv.innerHTML = '<button class="btn btn-primary btn-sm" onclick="showPage(\'appointment\');closeChat()">📅 Go to Booking Page</button>';
+        document.getElementById('chatMessages').appendChild(quickDiv);
+      }, 500);
+    }
+  }, 1200 + Math.random()*800);
+}
+function handleChatKey(e) { if(e.key==='Enter') sendChatMessage(); }
+function sendQuick(msg) {
+  document.getElementById('chatInput').value = msg;
+  sendChatMessage();
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('date').min = new Date().toISOString().split('T')[0];
+  document.getElementById('apptDate') && (document.getElementById('apptDate').min = new Date().toISOString().split('T')[0]);
+  document.getElementById('ctaDate') && (document.getElementById('ctaDate').min = new Date().toISOString().split('T')[0]);
+  // Show emergency bar after 3s
+  setTimeout(() => document.getElementById('emergencyBar').classList.add('show'), 3000);
+  setTimeout(() => document.getElementById('emergencyBar').classList.remove('show'), 8000);
+  // Trigger scroll animations
+  setTimeout(() => window.dispatchEvent(new Event('scroll')), 200);
+});
+function submitAppointment(){
+
+const appointment = {
+doctor: document.getElementById("doctor").value,
+date: document.getElementById("date").value,
+name: document.getElementById("name").value,
+phone: document.getElementById("phone").value
+};
+
+// get existing appointments
+let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+// add new appointment
+appointments.push(appointment);
+
+// save back to local storage
+localStorage.setItem("appointments", JSON.stringify(appointments));
+
+alert("Appointment saved successfully!");
+
+console.log(appointments);
+
+}
+
+</script>
+</body>
+</html>
